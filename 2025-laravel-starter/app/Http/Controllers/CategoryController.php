@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoryModel;
 use Illuminate\Http\Request;
 use Session;
 
@@ -12,7 +13,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        //get all categories from database
+        $categories = \App\Models\CategoryModel::all()->sortBy('name');
+//        dd($categories);
+
+        return view('categories.index')->with('categories', $categories);
     }
 
     /**
@@ -51,7 +56,15 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $category = CategoryModel::find($id);
+
+        if(!$category) {
+            return response() ->json([
+                'status' => false,
+                'message' => 'Category not found',
+            ],404);
+        }
+        return view('categories.show')->with('category', $category);
     }
 
     /**
@@ -59,7 +72,15 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = CategoryModel::find($id);
+
+        if(!$category) {
+            return response() ->json([
+                'status' => false,
+                'message' => 'Category not found',
+        ],404);
+        }
+        return view('categories.edit')->with('category', $category);
     }
 
     /**
@@ -67,7 +88,26 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //dd($request);
+        $category = \App\Models\CategoryModel::find($id);
+        if(!$category) {
+            return response() ->json([
+                'status' => false,
+                'message' => 'Category not found',
+            ],404);
+        }
+        $rules = [
+            'name' => 'required|max:50|unique:categories,name,'.$id
+        ];
+        $validator = $this->validate($request, $rules);
+
+        $category->name = $request->name;
+        $category->save();
+
+        //Flash a success message
+        Session::flash('success', 'The company has been updated');
+        //redirect to index
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -75,6 +115,8 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //dd(!$company);
+
+
     }
 }

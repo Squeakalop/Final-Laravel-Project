@@ -5,28 +5,22 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Create a Category</div>
+                    <div class="card-header">Category</div>
                     <div class="card-body">
-                        <form method="POST" action="/categories">
-                            @csrf
-
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label for="category">Category</label>
-                                    <input type="text" class="form-control" name="name" title="name" value="{{ old('company', null) }}">
+                                    <label for="category">Category: </label>
+                                    {{ $category-> name }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <a href="/categories" class="btn btn-lg btn-danger w-100" style="margin-top:20px">Cancel</a>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="submit" value="Add Category"
-                                           class="btn btn-lg btn-primary w-100" style="margin-top:20px" />
+                                    <a href="/companies" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Back</a>
                                 </div>
                             </div>
 
                         </form>
+
                     </div>
                 </div>
             </div><!-- .col-md-8 -->
