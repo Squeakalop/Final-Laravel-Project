@@ -13,7 +13,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="category">Category</label>
-                                    <input type="text" class="form-control" name="name" title="name" value="{{ old('company', null) }}">
+                                    <input type="text" class="form-control" name="name" title="name" value="{{ old('name', null) }}">
                                 </div>
                             </div>
                             <div class="row">

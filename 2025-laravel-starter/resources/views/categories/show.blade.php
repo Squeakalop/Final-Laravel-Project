@@ -15,12 +15,9 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <a href="/companies" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Back</a>
+                                    <a href="/categories" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Back</a>
                                 </div>
                             </div>
-
-                        </form>
-
                     </div>
                 </div>
             </div><!-- .col-md-8 -->

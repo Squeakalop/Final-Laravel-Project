@@ -17,12 +17,14 @@ return new class extends Migration
             $table->string('description');
             $table->integer('quantity');
             $table->decimal('price', 8, 2);
+
             $table->unsignedBigInteger('category_id');
             $table->string('sku');
             $table->string('picture');
-
+            $table->timestamps();
             $table->unique('title','sku');
             $table->index('title');
+            $table->softDeletes();
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade');
         });
     }

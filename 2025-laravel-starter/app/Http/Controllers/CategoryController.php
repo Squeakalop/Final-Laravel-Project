@@ -56,7 +56,7 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        $category = CategoryModel::find($id);
+        $category = \App\Models\CategoryModel::find($id);
 
         if(!$category) {
             return response() ->json([
@@ -72,7 +72,7 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        $category = CategoryModel::find($id);
+        $category = \App\Models\CategoryModel::find($id);
 
         if(!$category) {
             return response() ->json([
@@ -105,7 +105,7 @@ class CategoryController extends Controller
         $category->save();
 
         //Flash a success message
-        Session::flash('success', 'The company has been updated');
+        Session::flash('success', 'The category has been updated');
         //redirect to index
         return redirect()->route('categories.index');
     }
@@ -115,8 +115,18 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //dd(!$company);
+        //dd('delete');
+        $category = \App\Models\CategoryModel::find($id);
+        if (!$category) {
+            //dd("no company found");
+            Session::flash('error', 'No category found');
 
+        } else {
+            $category->delete();
+            Session::flash('success', 'Category deleted');
+        }
+
+        return redirect()->route('categories.index');
 
     }
 }
