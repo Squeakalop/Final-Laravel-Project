@@ -23,7 +23,7 @@
                                 <th>Price</th>
                                 <th>Quantity</th>
                                 <th>SKU</th>
-                                <th>Price</th>
+                                <th>Picture</th>
                                 <th></th>
                             </tr>
                             </thead>
