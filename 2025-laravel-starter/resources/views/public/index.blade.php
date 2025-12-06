@@ -10,10 +10,10 @@
                     <div style="width:300px; height:200px; background-color:lightblue;
                     text-align:center; vertical-align:middle; float:left; margin:50px;">
                         <h1>{{$category->name}}</h1>
-
+                    </div>
 
                 @endforeach
-            </div>
+
         </div><!-- .col-md-12 -->
     </div>
 
