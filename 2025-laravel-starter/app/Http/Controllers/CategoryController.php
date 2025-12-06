@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 
 class CategoryController extends Controller
 {
@@ -19,7 +20,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
@@ -27,7 +28,22 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //check form submission for errors
+        //insert into database or show error
+        //dd($request->all());
+        $rules = [
+            'name' => 'required|max:50|unique:categories,name'
+        ];
+        $validator = $this->validate($request, $rules);
+
+        $category = new \App\Models\CategoryModel;
+        $category->name = $request->name;
+        $category->save();
+
+        //Flash a success message
+        Session::flash('success', 'A new category has been created');
+        //redirect to index
+        return redirect()->route('categories.index');
     }
 
     /**

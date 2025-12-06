@@ -9,7 +9,8 @@ class CategoryModel extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'category';
+
+    protected $table = 'categories';
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     public function item() {
