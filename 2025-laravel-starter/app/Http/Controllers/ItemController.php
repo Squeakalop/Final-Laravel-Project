@@ -162,8 +162,12 @@ class ItemController extends Controller
             Session::flash('error', 'No item found');
 
         } else {
-            $item->delete();
-            Session::flash('success', 'Item deleted');
+            $imagePath = public_path('images/' . $item->picture);
+            if (is_file($imagePath)) {
+                unlink($imagePath);
+                $item->delete();
+                Session::flash('success', 'Item deleted');
+            }
         }
 
         return redirect()->route('items.index');
